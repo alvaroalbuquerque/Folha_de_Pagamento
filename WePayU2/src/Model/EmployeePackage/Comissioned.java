@@ -2,15 +2,35 @@ package Model.EmployeePackage;
 
 import Model.Address;
 import Model.Employee;
+import Model.Syndicate;
 
 public class Comissioned extends Employee {
-    double paymentTotal;
+    double totalToBePaid;
     double comissionTax;
     double totalSales;
+        double salary;
 
-    public Comissioned(int ID, String name, Address address, double salary, double comissionTax) {
-        super(ID, name, address, salary);
+    public Comissioned(int ID, String name, Address address,Syndicate syndicate, double salary,  double paymentTotal, double comissionTax) {
+        super(ID, name, address, syndicate);
         this.comissionTax = comissionTax;
+        this.totalSales = 0;
+        this.salary = salary;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public double getTotalToBePaid() {
+        return totalToBePaid;
+    }
+
+    public void setTotalToBePaid(double totalToBePaid) {
+        this.totalToBePaid = totalToBePaid;
     }
 
     public double getComissionTax() {

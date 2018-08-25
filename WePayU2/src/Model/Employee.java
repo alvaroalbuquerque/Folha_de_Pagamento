@@ -4,17 +4,17 @@ public class Employee {
     int ID;
     String name;
     Address address;
-    double salary;
     //PaymentType paymentType;
     boolean syndicateMember;
-    //Syndicate syndicate;
+    double banked;
+    Syndicate syndicate;
 
-    public Employee(int ID, String name, Address address, double salary) {
+    public Employee(int ID, String name, Address address, Syndicate syndicate) {
         this.ID = ID;
         this.name = name;
         this.address = address;
-        this.salary = salary;
-        this.syndicateMember = false;
+        this.syndicate = syndicate;
+        this.banked = 0;
     }
 
     public String getName() {
@@ -41,11 +41,27 @@ public class Employee {
         this.ID = ID;
     }
 
-    public double getSalary() {
-        return salary;
+    public Syndicate getSyndicate() {
+        return syndicate;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setSyndicate(Syndicate syndicate) {
+        this.syndicate = syndicate;
+    }
+
+    public boolean isSyndicateMember() {
+        return syndicateMember;
+    }
+
+    public void setSyndicateMember(boolean syndicateMember) {
+        this.syndicateMember = syndicateMember;
+    }
+
+    public double getBanked() {
+        return banked;
+    }
+
+    public void setBanked(double banked) {
+        this.banked = banked;
     }
 }
