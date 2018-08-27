@@ -1,19 +1,15 @@
 package Model.EmployeePackage;
 
-import Model.Address;
-import Model.Employee;
-import Model.Syndicate;
-import Model.TimeCard;
+import Model.*;
 
 public class Hourly extends Employee {
     double totalToBePaid;
     double normalTax;
     TimeCard timeCard;
-    //paymentType (weekly,monthly,DAY ...)
 
 
-    public Hourly(int ID, String name, Address address, Syndicate syndicate, double paymentTotal, double normalTax) {
-        super(ID, name, address, syndicate);
+    public Hourly(String name, Address address, PaymentType paymentType, Syndicate syndicate, double normalTax) {
+        super(name, address, paymentType, syndicate);
         this.normalTax = normalTax;
         timeCard = new TimeCard();
         this.totalToBePaid = 0;
@@ -41,5 +37,12 @@ public class Hourly extends Employee {
 
     public void setTimeCard(TimeCard timeCard) {
         this.timeCard = timeCard;
+    }
+
+    @Override
+    public String toString() {
+        return "Type: Hourly\n" + super.toString() +
+                "Normal Tax: " + normalTax + "\n" +
+                "To be paid: " + totalToBePaid + "\n";
     }
 }

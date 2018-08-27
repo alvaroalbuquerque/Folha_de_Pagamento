@@ -2,17 +2,15 @@ package Model.EmployeePackage;
 
 import Model.Address;
 import Model.Employee;
+import Model.PaymentType;
 import Model.Syndicate;
 
 public class Salaried extends Employee {
     double paymentTotal;
     double salary;
 
-
-    public Salaried(int ID, String name, Address address, Syndicate syndicate, double salary,  double paymentTotal) {
-        super(ID, name, address, syndicate);
-        this.paymentTotal = paymentTotal;
-
+    public Salaried(String name, Address address, PaymentType paymentType, Syndicate syndicate, double salary) {
+        super(name, address, paymentType, syndicate);
         this.salary = salary;
     }
 
@@ -30,5 +28,10 @@ public class Salaried extends Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Type: Salaried\n" + super.toString() + "Salary: " + salary + "\n";
     }
 }

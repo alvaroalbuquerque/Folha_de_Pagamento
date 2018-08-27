@@ -3,14 +3,16 @@ package AllDataPackage;
 import Model.Employee;
 import Model.Syndicate;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AllData {
-    //first ask the user to register the syndicate
-    //Syndicate syndicate = new Syndicate()
-    ///cada empregado ta ligado com um sindicato para saber qual a sua taxa
-    ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Employee> syndicateEmployee = new ArrayList<>();
+    private ArrayList<Employee> employees = new ArrayList<>();
+    private ArrayList<Employee> syndicateEmployee = new ArrayList<>();
+    private Calendar myCalendar = Calendar.getInstance();
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEEEEEE, MMM d",new Locale("en"));
 
     public ArrayList<Employee> getEmployees() {
         return employees;
@@ -26,5 +28,21 @@ public class AllData {
 
     public void setSyndicateEmployee(ArrayList<Employee> syndicateEmployee) {
         this.syndicateEmployee = syndicateEmployee;
+    }
+
+    public Calendar getMyCalendar() {
+        return myCalendar;
+    }
+
+    public void setMyCalendar(Calendar myCalendar) {
+        this.myCalendar = myCalendar;
+    }
+
+    public SimpleDateFormat getSimpleDateFormat() {
+        return simpleDateFormat;
+    }
+
+    public void setSimpleDateFormat(SimpleDateFormat simpleDateFormat) {
+        this.simpleDateFormat = simpleDateFormat;
     }
 }
