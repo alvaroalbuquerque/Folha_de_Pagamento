@@ -1,13 +1,19 @@
 package Methods;
 
 
+import AllDataPackage.AllData;
+import AllDataPackage.SavingState;
 import Model.EmployeePackage.Comissioned;
 import Model.EmployeePackage.Hourly;
 import Model.EmployeePackage.Salaried;
 import MySystem.MySystem;
+import Print.Message;
 
 
 public class MenuMethods {
+    private void saveSystemState(SavingState savingState, AllData allData){
+        savingState.addState(allData);
+    }
     public void showEditEmployeeMenu(MySystem mySystem){
         if(mySystem.utility.thereIsEmployee(mySystem.allData.getEmployees())) {
             mySystem.message.showTitleMenuFULL("Employees List");
@@ -51,13 +57,14 @@ public class MenuMethods {
                     break;
                 default:
                     mySystem.message.showInvalidInput();
+                    break;
             }
         }catch (NumberFormatException e){
             mySystem.message.showInvalidInput();
         }
 
     }
-    public void showRemoveEmployeeMenu(MySystem mySystem){
+    public boolean showRemoveEmployeeMenu(MySystem mySystem){
         if(mySystem.utility.thereIsEmployee(mySystem.allData.getEmployees())) {
             mySystem.message.showTitleMenuFULL("Employees List");
             mySystem.allDataPrint.printingEmployeeList(mySystem.allData.getEmployees());
@@ -74,6 +81,7 @@ public class MenuMethods {
                     }
                     mySystem.allData.getEmployees().remove(id);
                     mySystem.message.showSuccessMessage();
+                    return true;
                 } else {
                     mySystem.message.showProcessCanceled();
                 }
@@ -83,10 +91,10 @@ public class MenuMethods {
         }else{
             mySystem.message.showThereIsntX("employees");
         }
-
+        return false;
     }
 
-    public void editPaymentTypeEmployee(MySystem mySystem){
+    public boolean editPaymentTypeEmployee(MySystem mySystem){
 
         if(mySystem.utility.thereIsEmployee(mySystem.allData.getEmployees())) {
             mySystem.message.showTitleMenuFULL("Employees List");
@@ -96,17 +104,35 @@ public class MenuMethods {
             int id = mySystem.utility.employeeID(name, mySystem.allData.getEmployees());
             if (id != -9999) {
                 mySystem.paymentTypeMethods.editPaymentType(mySystem,mySystem.allData.getEmployees().get(id));
+                return true;
             } else {
                 mySystem.message.showThereIsntXEmail("employee");
             }
         }else{
             mySystem.message.showThereIsntX("employees");
         }
+        return false;
     }
     public void endOfDayOfWork(MySystem mySystem){
         mySystem.allDataMethods.runPayRoll(mySystem);
+        this.saveSystemState(mySystem.savingState,mySystem.allData);
         mySystem.allDataMethods.payTodayEmployees(mySystem);
         mySystem.allDataMethods.passDay(mySystem.allData.getMyCalendar());
+    }
+
+    private void undoState(SavingState savingState, AllData allData, Message message){
+        if(savingState.prevState(allData)){
+            message.showUndoSuccess();
+        }else{
+            message.showUndoError();
+        }
+    }
+    private void redoState(SavingState savingState, AllData allData, Message message){
+        if(savingState.nextState(allData)){
+            message.showRedoSuccess();
+        }else{
+            message.showRedoError();
+        }
     }
 
     public void showGeneralMenu(MySystem mySystem){
@@ -124,15 +150,16 @@ public class MenuMethods {
                         break;
                     case 1:
                         this.showAddEmployeeMenu(mySystem);
+                        saveSystemState(mySystem.savingState,mySystem.allData);
                         break;
                     case 2:
                         this.showEditEmployeeMenu(mySystem);
                         break;
                     case 3:
-                        this.showRemoveEmployeeMenu(mySystem);
+                        if(this.showRemoveEmployeeMenu(mySystem)){saveSystemState(mySystem.savingState,mySystem.allData);}
                         break;
                     case 4:
-                        this.editPaymentTypeEmployee(mySystem);
+                        if(this.editPaymentTypeEmployee(mySystem)){saveSystemState(mySystem.savingState,mySystem.allData);}
                         break;
                     case 5:
                         mySystem.message.showTitleMenuFULL("EMPLOYEES REPORT");
@@ -144,6 +171,12 @@ public class MenuMethods {
                         break;
                     case 7:
                         this.endOfDayOfWork(mySystem);
+                        break;
+                    case 8:
+                        this.undoState(mySystem.savingState,mySystem.allData,mySystem.message);
+                        break;
+                    case 9:
+                        this.redoState(mySystem.savingState,mySystem.allData,mySystem.message);
                         break;
                     default:
                         mySystem.message.showInvalidInput();

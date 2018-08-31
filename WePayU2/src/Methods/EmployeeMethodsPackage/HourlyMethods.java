@@ -3,6 +3,7 @@ package Methods.EmployeeMethodsPackage;
 import AllDataPackage.AllData;
 import Methods.AllDataMethods;
 import Methods.EmployeeMethods;
+import Methods.SyndicateMethods;
 import Methods.Utility;
 import Model.Employee;
 import Model.EmployeePackage.Hourly;
@@ -12,10 +13,10 @@ import Print.Message;
 
 public class HourlyMethods extends EmployeeMethods {
     double normalTax;
-    public HourlyMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods) {
-        super(allData, utility, message, allDataMethods);
-    }
 
+    public HourlyMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods, SyndicateMethods syndicateMethods) {
+        super(allData, utility, message, allDataMethods, syndicateMethods);
+    }
 
     public double getPaymentTotalDay(Hourly hourly) {
         double extraHours = hourly.getTimeCard().getHoursWorked() - 8;

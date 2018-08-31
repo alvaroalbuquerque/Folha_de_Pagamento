@@ -22,8 +22,6 @@ public class AllDataMethods {
         this.utility = utility;
     }
 
-    //End Day
-    //Saves what is going to be paid [+ fix salary (comissioned)]
     private void getEndOfDayInfo(MySystem mySystem){
         for(Employee object : mySystem.allData.getEmployees()){
             if(object instanceof Comissioned){
@@ -46,7 +44,6 @@ public class AllDataMethods {
         getEndOfDayInfo(mySystem);
         rollDailyPayment(mySystem);
     }
-    //----------------------- PAYING
 
     private void payGenericEmployee(MySystem mySystem, Employee employee){
         if(employee instanceof Comissioned){
@@ -102,7 +99,6 @@ public class AllDataMethods {
         }
     }
 
-    //===================
     public void addEmployee(Employee newEmployee) {
         allData.getEmployees().add(newEmployee);
         message.showSuccessMessage();

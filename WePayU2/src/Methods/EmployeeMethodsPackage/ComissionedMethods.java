@@ -3,6 +3,7 @@ package Methods.EmployeeMethodsPackage;
 import AllDataPackage.AllData;
 import Methods.AllDataMethods;
 import Methods.EmployeeMethods;
+import Methods.SyndicateMethods;
 import Methods.Utility;
 import Model.Employee;
 import Model.EmployeePackage.Comissioned;
@@ -12,8 +13,8 @@ import Print.Message;
 
 public class ComissionedMethods extends EmployeeMethods {
     double comissionTax, salary;
-    public ComissionedMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods) {
-        super(allData, utility, message, allDataMethods);
+    public ComissionedMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods, SyndicateMethods syndicateMethods) {
+        super(allData, utility, message, allDataMethods, syndicateMethods);
     }
 
     public double getPaymentTotalDay(Comissioned comissioned) {

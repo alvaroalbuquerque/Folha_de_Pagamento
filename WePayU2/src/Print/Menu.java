@@ -9,6 +9,8 @@ public class Menu {
                 "5. Employees Report\n" +
                 "6. Syndicate Employees Report\n" +
                 "7. End of Day/Run Timecard/Run Selling Results\n" +
+                "8. Undo\n" +
+                "9. Redo\n" +
                 "0. Exit");
     }
 

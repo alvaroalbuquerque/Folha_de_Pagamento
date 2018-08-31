@@ -3,6 +3,7 @@ package Methods.EmployeeMethodsPackage;
 import AllDataPackage.AllData;
 import Methods.AllDataMethods;
 import Methods.EmployeeMethods;
+import Methods.SyndicateMethods;
 import Methods.Utility;
 import Model.Employee;
 import Model.EmployeePackage.Salaried;
@@ -12,8 +13,9 @@ import Print.Message;
 
 public class SalariedMethods extends EmployeeMethods {
     double salary;
-    public SalariedMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods) {
-        super(allData, utility, message, allDataMethods);
+
+    public SalariedMethods(AllData allData, Utility utility, Message message, AllDataMethods allDataMethods, SyndicateMethods syndicateMethods) {
+        super(allData, utility, message, allDataMethods, syndicateMethods);
     }
 
     @Override

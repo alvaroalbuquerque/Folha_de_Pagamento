@@ -50,7 +50,6 @@ public class PaymentTypeMethods {
                 try {
                     int command = mySystem.utility.readInteger();
                     if(command == 1 || command == 2){
-                        System.out.println("===========" + command);
                         editEmployee.getPaymentType().setExtra(Integer.toString(command));
                         done = true;
                         editDayOfTheWeek(mySystem,editEmployee);
